@@ -1,0 +1,842 @@
+{
+	"CC15": {
+		"id": "TMDSCNCD2800157",
+		"name": "F280015x controlCARD",
+		"deviceXml": "f2800157",
+		"family": "C2000"
+	 },
+	"CC37": {
+		"id": "TMDSCNCD2800137",
+		"name": "F280013x controlCARD",
+		"deviceXml": "f2800137",
+		"family": "C2000"
+	},
+	"CC39": {
+		"id": "TMDSCNCD280039C",
+		"name": "F28003x controlCARD",
+		"deviceXml": "f280039c",
+		"family": "C2000"
+	},
+	"CC55": {
+		"id": "TMDSCNCD28P55X",
+		"name": "F28P55X controlCARD",
+		"deviceXml": "f28p550sj9",
+		"family": "C2000"
+	},
+	"CC65": {
+		"id": "TMDSCNCD28P65X",
+		"name": "F28P65X controlCARD",
+		"deviceXml": "f28p650dk9",
+		"family": "C2000"
+	},
+	"CL12": {
+		"id": "LAUNCHXL-F28E12X",
+		"name": "F28E12x LaunchPad™",
+		"deviceXml": "f28e120Scs",
+		"family": "C2000"
+	},
+	"CL15": {
+		"id": "LAUNCHXL-F2800157",
+		"name": "F2800157 LaunchPad™",
+		"deviceXml": "f2800157",
+		"family": "C2000"
+	},
+	"CL25": {
+		"id": "LAUNCHXL-F280025C",
+		"name": "F28002x LaunchPad™",
+		"deviceXml": "f280025c",
+		"family": "C2000"
+	},
+	"CL37": {
+		"id": "LAUNCHXL-F2800137",
+		"name": "F2800137 LaunchPad™",
+		"deviceXml": "f2800137",
+		"family": "C2000"
+	},
+	"CL39": {
+		"id": "LAUNCHXL-F280039C",
+		"name": "F28003x LaunchPad™",
+		"deviceXml": "f280039c",
+		"family": "C2000"
+	},
+	"CL49": {
+		"id": "LAUNCHXL-F280049C",
+		"name": "F28004x LaunchPad™",
+		"deviceXml": "f280049c",
+		"family": "C2000"
+	},
+	"CL55": {
+		"id": "LAUNCHXL-F28P55X",
+		"name": "F28P55X LaunchPad™",
+		"deviceXml": "f28p550sj9",
+		"family": "C2000"
+	},
+	"CL65": {
+		"id": "LAUNCHXL-F28P65x",
+		"name": "F28P65X LaunchPad™",
+		"deviceXml": "f28p650dk9",
+		"family": "C2000"
+	},
+	"CL85": {
+		"id": "LAUNCHXL-F29H85X",
+		"name": "F29H85X LaunchPad™",
+		"deviceXml": "f29h850tu9",
+		"family": "C2000"
+	},
+	"CM65": {
+		"id": "F28P65X-SOM-EVM",
+		"name": "F28P65x system-on-module evalution module",
+		"deviceXml": "f28p650dk9",
+		"family": "C2000"
+	},
+	"CS85": {
+		"id": "F29H85X-SOM-EVM",
+		"name": "F29H85x system-on-module evaluation module",
+		"deviceXml": "f29h850tu9",
+		"family": "C2000"
+	},
+	"E007": {
+		"id": "CC3220SF-LAUNCHXL",
+		"name": "CC3220SF LaunchPad™",
+		"deviceXml": "CC3220SF",
+		"family": "ECS"
+	},
+	"E008": {
+		"id": "CC3220S-LAUNCHXL",
+		"name": "CC3220S LaunchPad™",
+		"deviceXml": "CC3220S",
+		"family": "ECS"
+	},
+	"E009": {
+		"id": "CC3220R-LAUNCHXL",
+		"name": "CC3220R LaunchPad™",
+		"deviceXml": "?",
+		"family": "ECS"
+	},
+	"E00A": {
+		"id": "LAUNCHXL-CC3235SF",
+		"name": "CC3235SF LaunchPad™ (Dual-band 2.4GHz and 5GHz)",
+		"deviceXml": "CC3235SF",
+		"family": "ECS"
+	},
+	"E00B": {
+		"id": "LAUNCHXL-CC3235S",
+		"name": "CC3235S LaunchPad™ (Dual-band 2.4GHz and 5GHz)",
+		"deviceXml": "CC3235S",
+		"family": "ECS"
+	},
+	"E700": {
+		"id": "CC3220SF-LAUNCHXL",
+		"name": "CC3220SF LaunchPad™",
+		"deviceXml": "CC3220SF",
+		"family": "ECS"
+	},
+	"L100": {
+		"id": "LAUNCHXL-CC2650",
+		"name": "CC2650 LaunchPad™",
+		"deviceXml": "cc2650f128",
+		"family": "LPRF"
+	},
+	"L110": {
+		"id": "LAUNCHXL-CC26X2R1",
+		"name": "CC26x2R1 LaunchPad™",
+		"deviceXml": "cc2652r1f",
+		"family": "LPRF"
+	},
+	"L120": {
+		"id": "LP-CC2652RB",
+		"name": "CC2652RB LaunchPad™",
+		"deviceXml": "cc2652rb1f",
+		"family": "LPRF"
+	},
+	"L130": {
+		"id": "LP-CC2651P3",
+		"name": "CC2651P3 LaunchPad™",
+		"deviceXml": "cc2651p3",
+		"family": "LPRF"
+	},
+	"L140": {
+		"id": "LP-CC2651R3",
+		"name": "CC2651R3 LaunchPad™",
+		"deviceXml": "cc2651r3",
+		"family": "LPRF"
+	},
+	"L150": {
+		"id": "LP-CC2652R7",
+		"name": "CC2652R7 LaunchPad™",
+		"deviceXml": "cc2652r7",
+		"family": "LPRF"
+	},
+	"L200": {
+		"id": "LAUNCHXL-CC1310",
+		"name": "CC1310 LaunchPad™",
+		"deviceXml": "cc1310f128",
+		"family": "LPRF"
+	},
+	"L201": {
+		"id": "LAUNCHXL-CC13-90",
+		"name": "CC1310-CC1190 LaunchPad™",
+		"deviceXml": "cc1310f128",
+		"family": "LPRF"
+	},
+	"L210": {
+		"id": "LAUNCHXL-CC1312R1",
+		"name": "CC1312R1 LaunchPad™",
+		"deviceXml": "cc1312r1f3",
+		"family": "LPRF"
+	},
+	"L220": {
+		"id": "LP-CC1311P3",
+		"name": "CC1311P3 LaunchPad™",
+		"deviceXml": "cc1311p3",
+		"family": "LPRF"
+	},
+	"L230": {
+		"id": "LP-CC1311R3",
+		"name": "CC1311R3 LaunchPad™",
+		"deviceXml": "cc1311r3",
+		"family": "LPRF"
+	},
+	"L240": {
+		"id": "LP-CC1312R7",
+		"name": "CC1312R7 LaunchPad™",
+		"deviceXml": "cc1312r7",
+		"family": "LPRF"
+	},
+	"L300":{
+		"id": "CC-DEVPACK-DEBUG",
+		"name": "Debug DevPack rev 1.3",
+		"deviceXml": "cc2650f128",
+		"family": "LPRF"
+	},
+	"L400": {
+		"id": "LAUNCHXL-CC1350",
+		"name": "CC1350 LaunchPad™ (Dual-band 868MHz and 2.4GHz)",
+		"deviceXml": "cc1350f128",
+		"family": "LPRF"
+	},
+	"L401": {
+		"id": "LAUNCHXL-CC1350",
+		"name": "CC1350 LaunchPad™ (433-MHz)",
+		"deviceXml": "cc1350f128",
+		"family": "LPRF"
+	},
+	"L410": {
+		"id": "LAUNCHXL-CC1352R1",
+		"name": "CC1352R1 LaunchPad™ (Dual-band 868MHz and 2.4GHz)",
+		"deviceXml": "cc1352r1f3",
+		"family": "LPRF"
+	},
+	"L420": {
+		"id": "LAUNCHXL-CC1352P1",
+		"name": "CC1352P1 LaunchPad™",
+		"deviceXml": "cc1352p1f3",
+		"family": "LPRF"
+	},
+	"L430": {
+		"id": "LAUNCHXL-CC1352P-2",
+		"name": "CC1352P-2 LaunchPad™ (2.4GHz PA match)",
+		"deviceXml": "cc1352p1f3",
+		"family": "LPRF"
+	},
+	"L440": {
+		"id": "LAUNCHXL-CC1352P-4",
+		"name": "CC1352P-4 LaunchPad™ (Dual-band: 2.4GHz and 433MHz)",
+		"deviceXml": "cc1352p1f3",
+		"family": "LPRF"
+	},
+	"L450": {
+		"id": "LP-CC1352P7-1",
+		"name": "CC1352P7-1 LaunchPad™ (Sub-1Ghz PA)",
+		"deviceXml": "cc1352p7",
+		"family": "LPRF"
+	},
+	"L460": {
+		"id": "LP-CC1352P7-4",
+		"name": "CC1352P7-4 LaunchPad™ (2.4GHz PA)",
+		"deviceXml": "cc1352p7",
+		"family": "LPRF"
+	},
+	"L500": {
+		"id": "LAUNCHXL-CC2640R2",
+		"name": "CC2640R2 LaunchPad™",
+		"deviceXml": "cc2640r2f",
+		"family": "LPRF"
+	},
+	"L7S2": {
+		"id": "LP-CC2652R7-SOCKETED",
+		"name": "CC2652R7 Socketed LaunchPad™",
+		"deviceXml": "cc2652r7",
+		"family": "LPRF"
+	},
+	"LB00": {
+		"id": "BP-EM-CC1307R",
+		"name": "CC1307R BoosterPack™ Sub-1GHz OFDM and FSK transceiver (works in Japan/US/EU bands, no high power PA)",
+		"deviceXml": "cc1307r",
+		"family": "LPRF"
+	},
+	"LB01": {
+		"id": "BP-EM-CC1307R-CC1190-JP",
+		"name": "CC1307R BoosterPack™ Sub-1GHz OFDM and FSK transceiver with CC1190 FEM (targeting ARIB compliance for Japan, with CC1190 high power PA)",
+		"deviceXml": "cc1307r",
+		"family": "LPRF"
+	},
+	"LB02": {
+		"id": "BP-EM-CC1307R-CC1190-US",
+		"name": "CC1307R BoosterPack™ Sub-1GHz OFDM and FSK transceiver with CC1190 FEM (targeting FCC compliance for US, with CC1190 high power PA)",
+		"deviceXml": "cc1307r",
+		"family": "LPRF"
+	},
+	"LB03": {
+		"id": "BP-EM-CC1307R-CC1190-EU",
+		"name": "CC1307R BoosterPack™ Sub-1GHz OFDM and FSK transceiver with CC1190 FEM (targeting RED/TEK compliance for EU, with CC1190 high power PA)",
+		"deviceXml": "cc1307r",
+		"family": "LPRF"
+	},
+	"LS42": {
+		"id": "LPSPLIT-CC1352P",
+		"name": "LPSPLIT-CC1352P Debugger",
+		"deviceXml": "cc1352p7",
+		"family": "LPRF"
+	},
+	"LS43": {
+		"id": "LP-EM-CC1314R10",
+		"name": "CC1314R10 LaunchPad™",
+		"deviceXml": "cc1314r10",
+		"family": "LPRF"
+	},
+	"LS44": {
+		"id": "LP-EM-CC2653P10",
+		"name": "CC2653P10 LaunchPad™",
+		"deviceXml": "cc2653p10",
+		"family": "LPRF"
+	},
+	"LS45": {
+		"id": "LP-EM-CC1354P10-1",
+		"name": "CC1354P10 LaunchPad™",
+		"deviceXml": "cc1354p10",
+		"family": "LPRF"
+	},
+	"LS46": {
+		"id": "LP-EM-CC1354P10-6",
+		"name": "CC1354P10 LaunchPad™",
+		"deviceXml": "cc1354p10",
+		"family": "LPRF"
+	},
+	"LS47": {
+		"id": "LP-EM-CC2340R5",
+		"name": "CC2340R5 LaunchPad™",
+		"deviceXml": "cc2340r5",
+		"family": "LPRF"
+	},
+	"LS48": {
+		"id": "LP-EM-CC2745P10",
+		"name": "CC2745P10 LaunchPad™",
+		"deviceXml": "cc2745p10",
+		"family": "LPRF"
+	},
+	"LS50": {
+		"id": "LP-EM-CC2745R10-Q1",
+		"name": "CC2745R10-Q1 LaunchPad™",
+		"deviceXml": "cc2745r10",
+		"family": "LPRF"
+	},
+	"LS51": {
+		"id": "LP-EM-CC2340R2",
+		"name": "CC2340R2 LaunchPad™",
+		"deviceXml": "cc2340r2",
+		"family": "LPRF"
+	},
+	"LS52": {
+		"id": "LP-EM-CC2340R53",
+		"name": "CC2340R53 LaunchPad™",
+		"deviceXml": "cc2340r53",
+		"family": "LPRF"
+	},
+	"LS53": {
+		"id": "LP-EM-CC2674P10",
+		"name": "CC2674P10 LaunchPad™",
+		"deviceXml": "cc2674p10",
+		"family": "LPRF"
+	},
+	"LS54": {
+		"id": "LP-EM-CC2744R7",
+		"name": "CC2744R7 LaunchPad™",
+		"deviceXml": "cc2744r7",
+		"family": "LPRF"
+	},
+	"LS55": {
+		"id": "CC2662RQ1-BCU-EVM",
+		"name": "CC2662RQ1 2.4GHz Agama WBMS",
+		"deviceXml": "cc2662rq1",
+		"family": "LPRF"
+	},
+	"LS56": {
+		"id": "LP-EM-CC2755P10",
+		"name": "CC2755P10 LaunchPad™",
+		"deviceXml": "cc2755p10",
+		"family": "LPRF"
+	},
+	"LS57": {
+		"id": "LP-EM-CC2745R7",
+		"name": "CC2745R7 LaunchPad™",
+		"deviceXml": "cc2745r7",
+		"family": "LPRF"
+	},
+	"LS58": {
+		"id": "LP-EM-CC2755R10",
+		"name": "CC2755R10 LaunchPad™",
+		"deviceXml": "cc2755r10",
+		"family": "LPRF"
+	},
+	"LSE2": {
+		"id": "LPSTK-CC1352R",
+		"name": "CC1352R multi-band SensorTag for Sub-1GHz & 2.4GHz (enclosed/battery operated)",
+		"deviceXml": "cc1352r1f3",
+		"family": "LPRF"
+	},
+	"LSPA": {
+		"id": "LP-CC2652RSIPA",
+		"name": "CC2652RSIPA system-in-package LaunchPad™ w/o PA for 2.4GHz",
+		"deviceXml": "cc2651r3",
+		"family": "LPRF"
+	},
+	"LSPP": {
+		"id": "LP-CC2652PSIP",
+		"name": "CC2652PSIP system-in-package LaunchPad™ w/PA for 2.4GHz",
+		"deviceXml": "cc2652p1f",
+		"family": "LPRF"
+	},
+	"LSPR": {
+		"id": "LP-CC2652RSIP",
+		"name": "CC2652RSIP system-in-package LaunchPad™ w/o PA for 2.4GHz",
+		"deviceXml": "cc2652r1f",
+		"family": "LPRF"
+	},
+	"LSPS": {
+		"id": "LP-EM-CC1312PSIP",
+		"name": "CC1312PSIP system-in-package LaunchPad™ w/PA for Sub1-GHz",
+		"deviceXml": "cc1312psip",
+		"family": "LPRF"
+	},
+	"M411": {
+		"id": "MSP-EXP432P4111",
+		"name": "MSP432P4111 LaunchPad™ rev 1.0",
+		"deviceXml": "msp432p4111",
+		"family": "MSP"
+	},
+	"M432": {
+		"id": "MSP-EXP432P401R",
+		"name": "MSP432P401R LaunchPad™ rev 2.0",
+		"deviceXml": "msp432p401r",
+		"family": "MSP"
+	},
+	"MC01": {
+		"id": "LP-MSPM0C1106",
+		"name": "MSPM0C1106 Launchpad™",
+		"deviceXml": "MSPM0C1106",
+		"family": "MSP"
+	},
+	"MC11": {
+		"id": "LP-MSPM0C1104",
+		"name": "MSPM0C1104 LaunchPad™",
+		"deviceXml": "MSPM0C1104",
+		"family": "MSP"
+	},
+	"ME40": {
+		"id": "MSP-EXP432E401Y",
+		"name": "MSP432E401Y LaunchPad™ rev 1.0",
+		"deviceXml": "msp432e401y",
+		"family": "MSP"
+	},
+	"MEDU": {
+		"id": "TI-INNOVATOR",
+		"name": "TI-Innovator™ Hub",
+		"deviceXml": "msp432p401r",
+		"family": "MSP"
+	},
+	"MG01": {
+		"id": "LP-MSPM0G3519",
+		"name": "MSPM0G3519 LaunchPad™",
+		"deviceXml": "MSPM0G3519",
+		"family": "MSP"
+	},
+	"MG02": {
+		"id": "LP-MSPM0G5117",
+		"name": "MSPM0G5117 LaunchPad™",
+		"deviceXml": "MSPM0G5117",
+		"family": "MSP"
+	},
+	"MG35": {
+		"id": "LP-MSPM0G3507",
+		"name": "MSPM0G3507 LaunchPad™",
+		"deviceXml": "MSPM0G3507",
+		"family": "MSP"
+	},
+	"MH01": {
+		"id": "LP-MSPM0H3216",
+		"name": "MSPM0H3216 LaunchPad™",
+		"deviceXml": "MSPM0H3216",
+		"family": "MSP"
+	},
+	"ML01": {
+		"id": "LP-MSPM0L1117",
+		"name": "MSPM0L1117 LaunchPad™",
+		"deviceXml": "MSPM0L1117",
+		"family": "MSP"
+	},
+	"ML02": {
+		"id": "LP-MSPM0L2117",
+		"name": "MSPM0L2117 LaunchPad™",
+		"deviceXml": "MSPM0L2117",
+		"family": "MSP"
+	},
+	"ML13": {
+		"id": "LP-MSPM0L1306",
+		"name": "MSPM0L1306 LaunchPad™",
+		"deviceXml": "MSPM0L1306",
+		"family": "MSP"
+	},
+	"ML22": {
+		"id": "LP-MSPM0L2228",
+		"name": "MSPM0L2228 LaunchPad™",
+		"deviceXml": "MSPM0L2228",
+		"family": "MSP"
+	},
+	"P100": {
+		"id": "TMDS273GPEVM",
+		"name": "AM273x general purpose evaluation module",
+		"deviceXml": "am273x",
+		"family": "Processor"
+	},
+	"R001": {
+		"id": "AWR1243BOOST",
+		"name": "AWR1243 BoosterPack™ Rev A",
+		"deviceXml": "awr1243",
+		"family": "mmWave"
+	},
+	"R002": {
+		"id": "AWR1443BOOST",
+		"name": "AWR1443 BoosterPack™ Rev A",
+		"deviceXml": "awr1443",
+		"family": "mmWave"
+	},
+	"R003": {
+		"id": "IWR1443BOOST",
+		"name": "IWR1443 BoosterPack™ Rev A",
+		"deviceXml": "iwr1443",
+		"family": "mmWave"
+	},
+	"R004": {
+		"id": "AWR1642BOOST",
+		"name": "AWR1642 BoosterPack™ Rev A/B",
+		"deviceXml": "awr1642",
+		"family": "mmWave"
+	},
+	"R005": {
+		"id": "IWR1642BOOST",
+		"name": "IWR1642 BoosterPack™ Rev A/B",
+		"deviceXml": "iwr1642",
+		"family": "mmWave"
+	},
+	"R006": {
+		"id": "AWR1642EVM-ODS",
+		"name": "AWR1642 evaluation module",
+		"deviceXml": "awr1642",
+		"family": "mmWave"
+	},
+	"R007": {
+		"id": "AWR1642EVM-ODS",
+		"name": "AWR1642 evaluation module",
+		"deviceXml": "awr1642",
+		"family": "mmWave"
+	},
+	"R008": {
+		"id": "MMWAVEICBOOST",
+		"name": "mmWave sensors carrier card platform",
+		"deviceXml": "?",
+		"family": "mmWave"
+	},
+	"R009": {
+		"id": "AWR1843BOOST",
+		"name": "AWR1843 BoosterPack™ Rev A",
+		"deviceXml": "awr1843",
+		"family": "mmWave"
+	},
+	"R010": {
+		"id": "IWR1843BOOST",
+		"name": "IWR1843 BoosterPack™ Rev A",
+		"deviceXml": "iwr1843",
+		"family": "mmWave"
+	},
+	"R101": {
+		"id": "AWR1243BOOST",
+		"name": "AWR1243 BoosterPack™ Rev B",
+		"deviceXml": "awr1243",
+		"family": "mmWave"
+	},
+	"R102": {
+		"id": "AWR1443BOOST",
+		"name": "AWR1443 BoosterPack™ Rev B",
+		"deviceXml": "awr1443",
+		"family": "mmWave"
+	},
+	"R103": {
+		"id": "IWR1443BOOST",
+		"name": "IWR1443 BoosterPack™ Rev B",
+		"deviceXml": "iwr1443",
+		"family": "mmWave"
+	},
+	"R104": {
+		"id": "AWR2243BOOST",
+		"name": "AWR2243 BoosterPack™ Rev B",
+		"deviceXml": "awr2243",
+		"family": "mmWave"
+	},
+	"R108": {
+		"id": "MMWAVEICBOOST",
+		"name": "mmWave sensors carrier card platform ISK",
+		"deviceXml": "?",
+		"family": "mmWave"
+	},
+	"R109": {
+		"id": "AWR1843BOOST",
+		"name": "AWR1843 BoosterPack™ Rev B",
+		"deviceXml": "awr1843",
+		"family": "mmWave"
+	},
+	"R110": {
+		"id": "IWR1843BOOST",
+		"name": "IWR1843 BoosterPack™ Rev B",
+		"deviceXml": "iwr1843",
+		"family": "mmWave"
+	},
+	"R209": {
+		"id": "AWR1843BOOST",
+		"name": "AWR1843 BoosterPack™ Rev C",
+		"deviceXml": "awr1843",
+		"family": "mmWave"
+	},
+	"R210": {
+		"id": "IWR1843BOOST",
+		"name": "IWR1843 BoosterPack™ Rev C",
+		"deviceXml": "iwr1843",
+		"family": "mmWave"
+	},
+	"RA29": {
+		"id": "AWR2944EVM",
+		"name": "AWR2944 evaluation module",
+		"deviceXml": "awr2944",
+		"family": "mmWave"
+	},
+	"RA2A": {
+		"id": "AWRL6432AOP",
+		"name": "AWRL6432 antenna-on-package evaluation module",
+		"deviceXml": "awrl6432",
+		"family": "mmWave"
+	},
+	"RA2B": {
+		"id": "AWRL1432BOOST",
+		"name": "AWRL1432 BoosterPack™",
+		"deviceXml": "awrl1432",
+		"family": "mmWave"
+	},
+	"RA2C": {
+		"id": "AWRL1432BOOST-BSD",
+		"name": "AWRL1432 BoosterPack™ for blind spot detection",
+		"deviceXml": "awrl1432",
+		"family": "mmWave"
+	},
+	"RA32": {
+		"id": "AWRL6432BOOST",
+		"name": "AWRL6432 BoosterPack™",
+		"deviceXml": "awrl6432",
+		"family": "mmWave"
+	},
+	"RA44": {
+		"id": "AWRL6844EVM",
+		"name": "AWRL6844 evaluation module",
+		"deviceXml": "awrl6844",
+		"family": "mmWave"
+	},
+	"RA88": {
+		"id": "AWRL6888EVM",
+		"name": "AWRL6888 evaluation module",
+		"deviceXml": "awrl6888",
+		"family": "mmWave"
+	},
+	"RA4P": {
+		"id": "AWR2544LOPEVM",
+		"name": "AWR2544 launch-on-package evaluation module",
+		"deviceXml": "awr2544",
+		"family": "mmWave"
+	},
+	"RAOP": {
+		"id": "AWR1843AOPEVM",
+		"name": "AWR1843 antenna-on-package evaluation module Rev A",
+		"deviceXml": "awr1843",
+		"family": "mmWave"
+	},
+	"RE44": {
+		"id": "AWR2E44EVM",
+		"name": "AWR2E44 launch-on-package evaluation module",
+		"deviceXml": "awr2e44",
+		"family": "mmWave"
+	},
+	"RE45": {
+		"id": "AWR2E44PEVM",
+		"name": "AWR2E44P launch-on-package evaluation module",
+		"deviceXml": "awr2e44p",
+		"family": "mmWave"
+	},
+	"RI2A": {
+		"id": "IWRL6432AOP",
+		"name": "IWRL6432 antenna-on-package evaluation module",
+		"deviceXml": "iwrl6432",
+		"family": "mmWave"
+	},
+	"RI2B": {
+		"id": "IWRL1432BOOST",
+		"name": "IWRL1432 BoosterPack™",
+		"deviceXml": "iwrl1432",
+		"family": "mmWave"
+	},
+	"RI2C": {
+		"id": "IWRL1432BOOST-BSD",
+		"name": "IWRL1432 BoosterPack™ for blind spot detection",
+		"deviceXml": "iwrl1432",
+		"family": "mmWave"
+	},
+	"RI2W": {
+		"id": "IWRL6432WCSP",
+		"name": "IWRL6432WCSP",
+		"deviceXml": "iwrl6432",
+		"family": "mmWave"
+	},
+	"RI32": {
+		"id": "IWRL6432BOOST",
+		"name": "IWRL6432 BoosterPack™",
+		"deviceXml": "iwrl6432",
+		"family": "mmWave"
+	},
+	"RI44": {
+		"id": "IWRL6844EVM",
+		"name": "IWRL6844 evaluation module",
+		"deviceXml": "iwrl6844",
+		"family": "mmWave"
+	},
+	"RI88": {
+		"id": "IWRL6888EVM",
+		"name": "IWRL6888 evaluation module",
+		"deviceXml": "iwrl6888",
+		"family": "mmWave"
+	},
+	"RPEA": {
+		"id": "MMWAVEPOEEVM",
+		"name": "mmWave sensor Power over Ethernet (PoE) evaluation module Rev A",
+		"deviceXml": "?",
+		"family": "mmWave"
+	},
+	"S24G": {
+		"id": "TMDS243EVM",
+		"name": "AM243x EVM",
+		"deviceXml": "AM2434_ALV",
+		"family": "Processor"
+	},
+	"S24L": {
+		"id": "LP-AM243",
+		"name": "AM243x LaunchPad™",
+		"deviceXml": "AM2434_ALX",
+		"family": "Processor"
+	},
+	"S26A": {
+		"id": "TMDSCNCD263",
+		"name": "AM263x controlCARD",
+		"deviceXml": "AM263x",
+		"family": "Processor"
+	},
+	"S26B": {
+		"id": "LP-AM263",
+		"name": "AM263x LaunchPad™",
+		"deviceXml": "AM263x",
+		"family": "Processor"
+	},
+	"S26D": {
+		"id": "TMDSCNCD263P",
+		"name": "AM263Px controlCARD",
+		"deviceXml": "AM263Px",
+		"family": "Processor"
+	},
+	"S26E": {
+		"id": "LP-AM263P",
+		"name": "AM263Px LaunchPad™",
+		"deviceXml": "AM263Px",
+		"family": "Processor"
+	},
+	"S26G": {
+		"id": "LP-AM261",
+		"name": "AM261x LaunchPad™",
+		"deviceXml": "AM261x",
+		"family": "Processor"
+	},
+	"S62A": {
+		"id": "SK-AM62",
+		"name": "AM62x starter kit",
+		"deviceXml": "AM62x",
+		"family": "Processor"
+	},
+	"S62C": {
+		"id": "SK-AM62A-LP",
+		"name": "AM62A starter kit",
+		"deviceXml": "AM62A",
+		"family": "Processor"
+	},
+	"S62F": {
+		"id": "SK-AM62-SIP",
+		"name": "AM62x system-in-package starter kit",
+		"deviceXml": "AM62x",
+		"family": "Processor"
+	},
+	"S62G": {
+		"id": "SK-AM62P-LP",
+		"name": "AM62P starter kit",
+		"deviceXml": "AM62P",
+		"family": "Processor"
+	},
+	"S62H": {
+		"id": "AUDIO-AM62D-EVM",
+		"name": "AM62D audio evaluation module",
+		"deviceXml": "AM62D",
+		"family": "Processor"
+	},
+	"S62I": {
+		"id": "TMDS62LEVM",
+		"name": "AM62L evaluation module",
+		"deviceXml": "AM62L",
+		"family": "Processor"
+	},
+	"S64B": {
+		"id": "SK-AM64B",
+		"name": "AM64B starter kit",
+		"deviceXml": "AM64x",
+		"family": "Processor"
+	},
+	"S64E": {
+		"id": "TMDS64EVM",
+		"name": "AM64x evaluation module",
+		"deviceXml": "AM64x",
+		"family": "Processor"
+	},
+	"S64G": {
+		"id": "TMDS64GPEVM",
+		"name": "AM64x general purpose evaluation module",
+		"deviceXml": "AM64x",
+		"family": "Processor"
+	},
+	"S64S": {
+		"id": "SK-AM64",
+		"name": "AM64x starter kit",
+		"deviceXml": "AM64x",
+		"family": "Processor"
+	}
+}

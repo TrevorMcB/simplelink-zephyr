@@ -7,7 +7,6 @@
 import os
 from multiprocessing import Lock, Value
 import re
-
 import platform
 import yaml
 import scl
@@ -18,8 +17,6 @@ from natsort import natsorted
 from twisterlib.environment import ZEPHYR_BASE
 
 try:
-    # Use the C LibYAML parser if available, rather than the Python parser.
-    # It's much faster.
     from yaml import CSafeLoader as SafeLoader
     from yaml import CDumper as Dumper
 except ImportError:
@@ -29,6 +26,22 @@ try:
     from tabulate import tabulate
 except ImportError:
     print("Install tabulate python module with pip to use --device-testing option.")
+
+
+import json
+import importlib.resources as resources
+
+# Loads board_ids from package inside importlib
+def load_board_ids():
+    
+    with resources.files("board_ids").joinpath("board_ids.json").open("r") as f:
+        return json.load(f)
+
+
+# global board ids
+BOARD_IDS = load_board_ids()
+
+
 
 logger = logging.getLogger('twister')
 logger.setLevel(logging.DEBUG)
@@ -68,49 +81,47 @@ class DUT(object):
         self.fixtures = []
         self.post_flash_script = post_flash_script
         self.post_script = post_script
-        self.pre_script = pre_script
         self.probe_id = None
-        self.notes = None
+        self.pre_script = pre_script
         self.lock = Lock()
         self.match = False
         self.flash_timeout = flash_timeout
         self.flash_with_test = flash_with_test
 
-    @property
-    def available(self):
-        with self._available.get_lock():
-            return self._available.value
-
-    @available.setter
-    def available(self, value):
-        with self._available.get_lock():
-            self._available.value = value
-
-    @property
-    def counter(self):
-        with self._counter.get_lock():
-            return self._counter.value
-
-    @counter.setter
-    def counter(self, value):
-        with self._counter.get_lock():
-            self._counter.value = value
-
+    
     def to_dict(self):
-        d = {}
-        exclude = ['_available', '_counter', 'match']
-        v = vars(self)
-        for k in v.keys():
-            if k not in exclude and v[k]:
-                d[k] = v[k]
-        return d
 
+        exclude = {
+            '_available',
+            '_counter',
+            'match',
+            'vid',          
+            'pid',          
+            'manufacturer', 
+            'lock',
+            'fixtures',
+            'probe_id',
+            'notes',
+        }
+
+        d = {}
+        for k, v in vars(self).items():
+            if k in exclude:
+                continue
+            if v is not None:
+                d[k] = v
+
+        return d
+    
 
     def __repr__(self):
         return f"<{self.platform} ({self.product}) on {self.serial}>"
 
+
 class HardwareMap:
-    schema_path = os.path.join(ZEPHYR_BASE, "scripts", "schemas", "twister", "hwmap-schema.yaml")
+    schema_path = os.path.join(
+        ZEPHYR_BASE, "scripts", "schemas", "twister", "hwmap-schema.yaml"
+    )
 
     manufacturer = [
         'ARM',
@@ -119,13 +130,14 @@ class HardwareMap:
         'STMicroelectronics',
         'Atmel Corp.',
         'Texas Instruments',
+        'Texas Instruments Incorporated',
         'Silicon Labs',
         'NXP',
         'NXP Semiconductors',
         'Microchip Technology Inc.',
         'FTDI',
         'Digilent',
-        'Microsoft'
+        'Microsoft',
     ]
 
     runner_mapping = {
@@ -151,8 +163,11 @@ class HardwareMap:
         self.duts = []
         self.options = env.options
 
-    def discover(self):
 
+
+
+
+    def discover(self):
         if self.options.generate_hardware_map:
             self.scan(persistent=self.options.persistent_hardware_map)
             self.save(self.options.generate_hardware_map)
@@ -174,58 +189,37 @@ class HardwareMap:
                             self.options.platform.append(d.platform)
 
             elif self.options.device_serial:
-                self.add_device(self.options.device_serial,
-                                self.options.platform[0],
-                                self.options.pre_script,
-                                False,
-                                baud=self.options.device_serial_baud,
-                                flash_timeout=self.options.device_flash_timeout,
-                                flash_with_test=self.options.device_flash_with_test,
-                                flash_before=self.options.flash_before,
-                                )
+                self.add_device(
+                    self.options.device_serial,
+                    self.options.platform[0],
+                    self.options.pre_script,
+                    False,
+                    baud=self.options.device_serial_baud,
+                    flash_timeout=self.options.device_flash_timeout,
+                    flash_with_test=self.options.device_flash_with_test,
+                    flash_before=self.options.flash_before,
+                )
 
             elif self.options.device_serial_pty:
-                self.add_device(self.options.device_serial_pty,
-                                self.options.platform[0],
-                                self.options.pre_script,
-                                True,
-                                flash_timeout=self.options.device_flash_timeout,
-                                flash_with_test=self.options.device_flash_with_test,
-                                flash_before=False,
-                                )
+                self.add_device(
+                    self.options.device_serial_pty,
+                    self.options.platform[0],
+                    self.options.pre_script,
+                    True,
+                    flash_timeout=self.options.device_flash_timeout,
+                    flash_with_test=self.options.device_flash_with_test,
+                    flash_before=False,
+                )
 
-            # the fixtures given by twister command explicitly should be assigned to each DUT
             if self.options.fixture:
                 for d in self.duts:
                     d.fixtures.extend(self.options.fixture)
         return 1
 
-
-    def summary(self, selected_platforms):
-        print("\nHardware distribution summary:\n")
-        table = []
-        header = ['Board', 'ID', 'Counter']
-        for d in self.duts:
-            if d.connected and d.platform in selected_platforms:
-                row = [d.platform, d.id, d.counter]
-                table.append(row)
-        print(tabulate(table, headers=header, tablefmt="github"))
-
-
-    def add_device(self, serial, platform, pre_script, is_pty, baud=None, flash_timeout=60, flash_with_test=False, flash_before=False):
-        device = DUT(platform=platform, connected=True, pre_script=pre_script, serial_baud=baud,
-                     flash_timeout=flash_timeout, flash_with_test=flash_with_test, flash_before=flash_before
-                    )
-        if is_pty:
-            device.serial_pty = serial
-        else:
-            device.serial = serial
-
-        self.duts.append(device)
-
     def load(self, map_file):
         hwm_schema = scl.yaml_load(self.schema_path)
         duts = scl.yaml_load_verify(map_file, hwm_schema)
+
         for dut in duts:
             pre_script = dut.get('pre_script')
             post_script = dut.get('post_script')
@@ -234,142 +228,145 @@ class HardwareMap:
             flash_with_test = dut.get('flash_with_test')
             if flash_with_test is None:
                 flash_with_test = self.options.device_flash_with_test
+
             flash_before = dut.get('flash_before')
+            serial_pty = dut.get('serial_pty')
+            serial = dut.get('serial')
+            baud = dut.get('baud')
+
             if flash_before is None:
-                flash_before = self.options.flash_before and (not (flash_with_test or serial_pty))
-            platform  = dut.get('platform')
+                flash_before = (
+                    self.options.flash_before and
+                    not (flash_with_test or serial_pty)
+                )
+
+            platform_name = dut.get('platform')
             id = dut.get('id')
             runner = dut.get('runner')
             runner_params = dut.get('runner_params')
-            serial_pty = dut.get('serial_pty')
-            serial = dut.get('serial')
-            baud = dut.get('baud', None)
             product = dut.get('product')
             fixtures = dut.get('fixtures', [])
-            connected= dut.get('connected') and ((serial or serial_pty) is not None)
+            connected = dut.get('connected') and ((serial or serial_pty) is not None)
+
             if not connected:
                 continue
-            new_dut = DUT(platform=platform,
-                          product=product,
-                          runner=runner,
-                          runner_params=runner_params,
-                          id=id,
-                          serial_pty=serial_pty,
-                          serial=serial,
-                          serial_baud=baud,
-                          connected=connected,
-                          pre_script=pre_script,
-                          flash_before=flash_before,
-                          post_script=post_script,
-                          post_flash_script=post_flash_script,
-                          flash_timeout=flash_timeout,
-                          flash_with_test=flash_with_test)
+
+            new_dut = DUT(
+                platform=platform_name,
+                product=product,
+                runner=runner,
+                runner_params=runner_params,
+                id=id,
+                serial_pty=serial_pty,
+                serial=serial,
+                serial_baud=baud,
+                connected=connected,
+                pre_script=pre_script,
+                flash_before=flash_before,
+                post_script=post_script,
+                post_flash_script=post_flash_script,
+                flash_timeout=flash_timeout,
+                flash_with_test=flash_with_test,
+            )
+
             new_dut.fixtures = fixtures
-            new_dut.counter = 0
+            # counter/available are there but not used right now
             self.duts.append(new_dut)
+
+
 
     def scan(self, persistent=False):
         from serial.tools import list_ports
 
-        if persistent and platform.system() == 'Linux':
-            # On Linux, /dev/serial/by-id provides symlinks to
-            # '/dev/ttyACMx' nodes using names which are unique as
-            # long as manufacturers fill out USB metadata nicely.
-            #
-            # This creates a map from '/dev/ttyACMx' device nodes
-            # to '/dev/serial/by-id/usb-...' symlinks. The symlinks
-            # go into the hardware map because they stay the same
-            # even when the user unplugs / replugs the device.
-            #
-            # Some inexpensive USB/serial adapters don't result
-            # in unique names here, though, so use of this feature
-            # requires explicitly setting persistent=True.
-            by_id = Path('/dev/serial/by-id')
-            def readlink(link):
-                return str((by_id / link).resolve())
-
-            if by_id.exists():
-                persistent_map = {readlink(link): str(link)
-                                  for link in by_id.iterdir()}
-            else:
-                persistent_map = {}
-        else:
-            persistent_map = {}
-
         serial_devices = list_ports.comports()
         logger.info("Scanning connected hardware...")
+
         for d in serial_devices:
-            if d.manufacturer and d.manufacturer.casefold() in [m.casefold() for m in self.manufacturer]:
 
-                # TI XDS110 can have multiple serial devices for a single board
-                # assume endpoint 0 is the serial, skip all others
-                if d.manufacturer == 'Texas Instruments' and not d.location.endswith('0'):
-                    continue
+            # Only detect TI boards (optional, remove if unwanted)
+            if not d.manufacturer or "Texas Instruments" not in d.manufacturer:
+                continue
 
-                if d.product is None:
-                    d.product = 'unknown'
+            # XDS110 exposes multiple COM interfaces; keep interface 0 only
+            if d.location and not d.location.endswith("0"):
+                continue
 
-                s_dev = DUT(platform="unknown",
-                                        id=d.serial_number,
-                                        serial=persistent_map.get(d.device, d.device),
-                                        product=d.product,
-                                        runner='unknown',
-                                        connected=True)
+            
+            s_dev = DUT(
+                platform="unknown",        
+                id=d.serial_number,        # id
+                serial=d.device,           # COM
+                product="unknown",        
+                runner="openocd",          
+                connected=True
+            )
 
-                for runner, _ in self.runner_mapping.items():
-                    products = self.runner_mapping.get(runner)
-                    if d.product in products:
-                        s_dev.runner = runner
-                        continue
-                    # Try regex matching
-                    for p in products:
-                        if re.match(p, d.product):
-                            s_dev.runner = runner
+            #Assign board information based on boar_ids.json
+            board_id = s_dev.id or ""
+            for prefix, entry in BOARD_IDS.items():
+                if(board_id.startswith(prefix)):
 
-                s_dev.connected = True
-                s_dev.lock = None
-                self.detected.append(s_dev)
-            else:
-                logger.warning("Unsupported device (%s): %s" % (d.manufacturer, d))
+                    #assign platform and name. 
+                    # if fail/missing, default to unknown
+
+
+                    boardplatform = entry.get("id", "unknown").lower()
+                    s_dev.platform = boardplatform.replace("-", "_")
+
+
+
+                    #s_dev.platform = entry.get("id", "unknown")
+                    s_dev.product  = entry.get("name", "unknown")
+                    break
+
+
+
+            self.detected.append(s_dev)
+
+
+
+
+
+
 
     def save(self, hwm_file):
-        # use existing map
         self.detected = natsorted(self.detected, key=lambda x: x.serial or '')
         if os.path.exists(hwm_file):
             with open(hwm_file, 'r') as yaml_file:
+                
+                
                 hwm = yaml.load(yaml_file, Loader=SafeLoader)
+                
                 if hwm:
                     hwm.sort(key=lambda x: x.get('id', ''))
 
-                    # disconnect everything
                     for h in hwm:
                         h['connected'] = False
                         h['serial'] = None
 
                     for _detected in self.detected:
                         for h in hwm:
-                            if all([
-                                _detected.id == h['id'],
-                                _detected.product == h['product'],
-                                _detected.match is False,
-                                h['connected'] is False
-                            ]):
+                            if (_detected.id == h['id']
+                                and _detected.product == h['product']
+                                and not _detected.match
+                                and not h['connected']):
                                 h['connected'] = True
                                 h['serial'] = _detected.serial
                                 _detected.match = True
                                 break
 
-                new_duts = list(filter(lambda d: not d.match, self.detected))
-                new = []
-                for d in new_duts:
-                    new.append(d.to_dict())
+                new_duts = [d.to_dict() for d in self.detected if not d.match]
 
                 if hwm:
-                    hwm = hwm + new
+                    hwm = hwm + new_duts
                 else:
-                    hwm = new
+                    hwm = new_duts
 
             with open(hwm_file, 'w') as yaml_file:
+
+                #clear content of map file before filling so previous boards don't show up
+                yaml_file.truncate()
+                
                 yaml.dump(hwm, yaml_file, Dumper=Dumper, default_flow_style=False)
 
             self.load(hwm_file)
@@ -377,24 +374,21 @@ class HardwareMap:
             self.dump()
 
         else:
-            # create new file
             dl = []
             for _connected in self.detected:
-                platform  = _connected.platform
-                id = _connected.id
-                runner = _connected.runner
-                serial = _connected.serial
-                product = _connected.product
                 d = {
-                    'platform': platform,
-                    'id': id,
-                    'runner': runner,
-                    'serial': serial,
-                    'product': product,
-                    'connected': _connected.connected
+                    'platform': _connected.platform,
+                    'id': _connected.id,
+                    'runner': _connected.runner,
+                    'serial': _connected.serial,
+                    'product': _connected.product,
+                    'connected': _connected.connected,
                 }
                 dl.append(d)
             with open(hwm_file, 'w') as yaml_file:
+                 #clear content of map file before filling so previous boards don't show up
+                yaml_file.truncate()
+
                 yaml.dump(dl, yaml_file, Dumper=Dumper, default_flow_style=False)
             logger.info("Detected devices:")
             self.dump(detected=True)
@@ -402,20 +396,14 @@ class HardwareMap:
     def dump(self, filtered=[], header=[], connected_only=False, detected=False):
         print("")
         table = []
-        if detected:
-            to_show = self.detected
-        else:
-            to_show = self.duts
+        to_show = self.detected if detected else self.duts
 
         if not header:
             header = ["Platform", "ID", "Serial device"]
         for p in to_show:
-            platform = p.platform
-            connected = p.connected
-            if filtered and platform not in filtered:
+            if filtered and p.platform not in filtered:
                 continue
-
-            if not connected_only or connected:
-                table.append([platform, p.id, p.serial])
+            if not connected_only or p.connected:
+                table.append([p.platform, p.id, p.serial])
 
         print(tabulate(table, headers=header, tablefmt="github"))
