@@ -3,6 +3,7 @@
 <p align="center">
   <img src="doc/images/ti_logo.png" />
 </p>
+
 ## edits by UTDesgin team
 TI openocd needed:
 https://downloads.ti.com/ccs/esd/vscode/ti-embedded-debug/resources/win32/openocd/openocd_20250414.zip
