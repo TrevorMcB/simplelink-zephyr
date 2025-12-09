@@ -1,0 +1,55 @@
+## Zephyr setup
+
+Ensure you create your virtual environment using python 3.11 as otherwise you will run into dependency issues.
+
+py -3.11 -m venv .venv
+
+You will have to use .ps1 instead of .bat: 
+
+zephyrproject\.venv\Scripts\Activate.ps1
+
+Ensure you are using the setup directions for zephyr 3.7 (https://docs.zephyrproject.org/3.7.0/develop/getting_started/index.html) , and replace the west init command with:
+
+west init -m https://github.com/TrevorMcB/simplelink-zephyr ./zephyrproject
+
+We utilized windows rather than linux in this project as initially we believed that auto-pts required this, 
+but the scope of the project changed when we abandoned auto-pts we stuck with it. 
+If you are utilizing linux we believe you must change the path for openocd to not use a .exe file inside the cmake file for the board  
+\boards\ti\lp_em_cc2340r53\board.cmake
+
+For this to work you must also download the TI version of openocd, the windows version is linked in the readme of the github
+You then extract and drop the folder into the zephyrproject\zephyr\ directory. It should look like this when you finish: 
+\zephyrproject\zephyr\openocd_20250414 and the bin folder should be visible from this directory, do not include the extra folder when extracting.
+https://downloads.ti.com/ccs/esd/vscode/ti-embedded-debug/resources/win32/openocd/openocd_20250414.zip
+
+## Twister Test Runner flags and configs
+
+--short-build-path	 is important for windows as the build paths exceed windows 250 character limit, it is a flag used in twister test runner
+
+CONFIG_BUILD_OUTPUT_BIN=n is important to stop the generation of a ~1gb bin file when building anything for the lp_em_cc2340r53 board, 
+including twister this can be put inside the \boards\ti\lp_em_cc2340r53\lp_em_cc2340r53_defconfig to be used on all builds 
+for the lp_em_cc2340r53
+
+CONFIG_ASSERT=n  is important to use when testing bluetooth items as otherwise there is an assertion that fails relating to the heap, 
+this setting is turned on by default for tests.When it is off its responsibilities are taken over by CONFIG_BT_ASSERT.
+This explains why samples function but tests do not. This cannot be put inside the lp_em_cc2340r53_defconfig as the prj.conf will override it.
+As far as we know this must be placed inside the prj.conf for any given test.
+
+bluetooth/mesh/basic requirements to run: go inside the testcase.yml file and edit the build_only to be false and add the lp_em_cc2340r53 to the allowed platforms, 
+you can use the flags -K, --force-platform but these did not always work for us. 			
+Twister harness: The twister harness is inside the testcase.yml file for the test you want to run. It should say:
+
+
+
+
+    harness_config:
+  
+        type: multi_line
+        
+        regex:
+        
+          - “Mesh initialized”
+
+        
+The regex detects the output of the board to determine a pass scenario. 
+For example if you wanted to pass when the mesh initializes correctly you would change it to “Mesh initialized”. An example of this is in test/bluetooth/mesh/basic
