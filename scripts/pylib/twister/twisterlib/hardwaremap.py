@@ -216,6 +216,63 @@ class HardwareMap:
                     d.fixtures.extend(self.options.fixture)
         return 1
 
+
+
+    def summary(self, selected_platforms):
+
+
+        print("\nHardware distribution summary:\n")
+
+
+        table = []
+
+
+        header = ['Board', 'ID', 'Counter']
+
+
+        for d in self.duts:
+
+
+            if d.connected and d.platform in selected_platforms:
+
+
+                row = [d.platform, d.id, d.counter]
+
+
+                table.append(row)
+
+
+        print(tabulate(table, headers=header, tablefmt="github"))
+    
+    def add_device(self, serial, platform, pre_script, is_pty, baud=None, flash_timeout=60, flash_with_test=False, flash_before=False):
+
+
+        device = DUT(platform=platform, connected=True, pre_script=pre_script, serial_baud=baud,
+
+
+                     flash_timeout=flash_timeout, flash_with_test=flash_with_test, flash_before=flash_before
+
+
+                    )
+
+
+        if is_pty:
+
+
+            device.serial_pty = serial
+
+
+        else:
+
+
+            device.serial = serial
+
+
+
+
+
+        self.duts.append(device)
+        
     def load(self, map_file):
         hwm_schema = scl.yaml_load(self.schema_path)
         duts = scl.yaml_load_verify(map_file, hwm_schema)
