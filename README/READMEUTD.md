@@ -53,3 +53,7 @@ Twister harness: The twister harness is inside the testcase.yml file for the tes
         
 The regex detects the output of the board to determine a pass scenario. 
 For example if you wanted to pass when the mesh initializes correctly you would change it to “Mesh initialized”. An example of this is in test/bluetooth/mesh/basic
+
+## Running Scheduler
+
+    python headlessLaunch.py
