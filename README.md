@@ -1,13 +1,17 @@
-# Texas Instruments Support for Zephyr
-
-<p align="center">
-  <img src="doc/images/ti_logo.png" />
-</p>
 
 ## edits by UTDesgin team
 TI openocd needed:
 https://downloads.ti.com/ccs/esd/vscode/ti-embedded-debug/resources/win32/openocd/openocd_20250414.zip
 
+board_ids setup
+
+see README directory for more details
+
+# Texas Instruments Support for Zephyr
+
+<p align="center">
+  <img src="doc/images/ti_logo.png" />
+</p>
 
 The Texas Instruments Zephyr GitHub repository is the starting point for Zephyr
 development on supported Texas Instruments devices. TI's Zephyr solution is
